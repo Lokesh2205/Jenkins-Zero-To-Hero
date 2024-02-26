@@ -2,7 +2,8 @@ pipeline {
   agent {
     docker {
       // args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
-      image 'abhishekf5/maven-abhishek-docker-agent:v1'
+      //image 'abhishekf5/maven-abhishek-docker-agent:v1'
+      image 'maven:latest'
     }
   }
   stages {
@@ -14,7 +15,7 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh 'ls -ltr'
+        sh 'mvn --version'
         // build the project and create a JAR file
         sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
       }
